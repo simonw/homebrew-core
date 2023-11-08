@@ -156,7 +156,8 @@ class Llm < Formula
   test do
     ENV["OPENAI_API_BASE"] = "https://openai-canned-completion.vercel.app/v1"
     ENV["OPENAI_API_KEY"] = "x"
-    assert_match "Hello! How can I assist you today?", shell_output("#{bin}/llm hello --no-log")
+    ENV["LLM_USER_PATH"] = "/tmp"
+    assert_match "Hello! How can I assist you today?", shell_output("#{bin}/llm hello")
 
     assert_match "llm, version", shell_output("#{bin}/llm --version")
   end
